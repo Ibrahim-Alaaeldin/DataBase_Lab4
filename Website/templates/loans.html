@@ -1,0 +1,43 @@
+
+{% extends "base.html" %}
+
+{% block content %}
+<h2>Library Loans</h2>
+
+<h3>1. Unreturned Loans</h3>
+<table>
+    <tr>
+        <th>Loan ID</th>
+        <th>Book</th>
+        <th>Member</th>
+        <th>Loan Date</th>
+    </tr>
+    {% for loan in unreturned %}
+    <tr>
+        <td>{{ loan.loan_id }}</td>
+        <td>{{ loan.title }}</td>
+        <td>{{ loan.member_name }}</td>
+        <td>{{ loan.loan_date }}</td>
+    </tr>
+    {% endfor %}
+</table>
+
+<h3>2. Members Who Never Borrowed</h3>
+<ul>
+    {% for member in members_never_borrowed %}
+    <li>{{ member.name }}</li>
+    {% else %}
+    <li>All members have borrowed books.</li>
+    {% endfor %}
+</ul>
+
+<h3>3. Books Never Borrowed</h3>
+<ul>
+    {% for book in books_never_borrowed %}
+    <li>{{ book.title }}</li>
+    {% else %}
+    <li>All books have been borrowed.</li>
+    {% endfor %}
+</ul>
+
+{% endblock %}

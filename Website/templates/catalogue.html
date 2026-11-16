@@ -1,0 +1,39 @@
+
+{% extends "base.html" %}
+
+{% block content %}
+<h2>Library Catalogue</h2>
+
+<table>
+    <thead>
+        <tr>
+            <th>Book ID</th>
+            <th>Title</th>
+            <th>Author</th>
+            <th>Publisher</th>
+            <th>Category</th>
+            <th>Price</th>
+            <th>Publish Year</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        {% for book in books %}
+        <tr>
+            <td>{{ book.book_id }}</td>
+            <td>{{ book.title }}</td>
+            <td>{{ book.author }}</td>
+            <td>{{ book.publisher }}</td>
+            <td>{{ book.category }}</td>
+            <td>{{ book.price }}</td>
+            <td>{{ book.publish_year }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+{% if not books %}
+<p>No books available.</p>
+{% endif %}
+
+{% endblock %}

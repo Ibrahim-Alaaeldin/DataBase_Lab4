@@ -1,0 +1,51 @@
+
+{% extends "base.html" %}
+
+{% block content %}
+<h2>Library Reports</h2>
+
+<h3>1. Books Count and Average Price per Category</h3>
+<table>
+    <tr>
+        <th>Category</th>
+        <th>Book Count</th>
+        <th>Average Price</th>
+    </tr>
+    {% for row in category_stats %}
+    <tr>
+        <td>{{ row.name }}</td>
+        <td>{{ row.book_count }}</td>
+        <td>{{ "%.2f"|format(row.average_price or 0) }}</td>
+    </tr>
+    {% endfor %}
+</table>
+
+<h3>2. Authors with at Least Two Books</h3>
+<table>
+    <tr>
+        <th>Author</th>
+        <th>Total Books</th>
+    </tr>
+    {% for author in authors_two_books %}
+    <tr>
+        <td>{{ author.name }}</td>
+        <td>{{ author.total_books }}</td>
+    </tr>
+    {% endfor %}
+</table>
+
+<h3>3. Overall Library Statistics</h3>
+<table>
+    <tr>
+        <th>Total Books</th>
+        <th>Minimum Price</th>
+        <th>Maximum Price</th>
+    </tr>
+    <tr>
+        <td>{{ price_stats.total_books }}</td>
+        <td>{{ price_stats.min_price }}</td>
+        <td>{{ price_stats.max_price }}</td>
+    </tr>
+</table>
+
+{% endblock %}

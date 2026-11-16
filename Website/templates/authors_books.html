@@ -1,0 +1,47 @@
+
+{% extends "base.html" %}
+
+{% block content %}
+<h2>Authors & Books</h2>
+
+<h3>1. All Authors and Their Book Counts</h3>
+
+<table>
+    <tr>
+        <th>Author</th>
+        <th>Number of Books</th>
+    </tr>
+
+    {% for author in author_stats %}
+    <tr>
+        <td>{{ author.name }}</td>
+        <td>{{ author.book_count }}</td>
+    </tr>
+    {% endfor %}
+</table>
+
+<h3>2. Books Where Author and Publisher Share the Same Country</h3>
+
+<table>
+    <tr>
+        <th>Book</th>
+        <th>Author</th>
+        <th>Publisher</th>
+        <th>Country</th>
+    </tr>
+
+    {% for book in same_country_books %}
+    <tr>
+        <td>{{ book.title }}</td>
+        <td>{{ book.author }}</td>
+        <td>{{ book.publisher }}</td>
+        <td>{{ book.country }}</td>
+    </tr>
+    {% else %}
+    <tr>
+        <td colspan="4">No matching books found.</td>
+    </tr>
+    {% endfor %}
+</table>
+
+{% endblock %}

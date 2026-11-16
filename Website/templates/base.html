@@ -1,0 +1,37 @@
+
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% block title %}To-Do{% endblock %}</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <header class="bar">
+    <a class="brand" href="{{ url_for('index') }}">✔ To-Do</a>
+
+    {% if session.user_id %}
+    <nav>
+      <a href="{{ url_for('todos') }}">To-Do</a>
+      <a href="{{ url_for('library') }}">Library</a>
+      <a href="{{ url_for('search_books') }}">Search Books</a>
+      <a href="{{ url_for('catalogue') }}">Catalogue</a>
+      <a href="{{ url_for('reports') }}">Reports</a>
+      <a href="{{ url_for('loans') }}">Loans</a>
+      <a href="{{ url_for('most_borrowed') }}">Most Borrowed</a>
+      <a href="{{ url_for('authors_books') }}">Authors & Books</a>
+    </nav>
+
+    <form method="post" action="{{ url_for('logout') }}" class="who">
+      <span>Hi, {{ session.name }}</span>
+      <button class="btn small ghost">Log out</button>
+    </form>
+    {% endif %}
+  </header>
+
+  <main>{% block content %}{% endblock %}</main>
+
+  <script src="{{ url_for('static', filename='app.js') }}"></script>
+</body>
+</html>
